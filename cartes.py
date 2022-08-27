@@ -5,7 +5,7 @@ class Carte:
     
     def montrer(self):
         print((self.couleur, self.symbole))
-
+    # ! cette fonction ne retourne rien, si utliser avec print, valeur affichée = None
     
     def peut_poser(self, carte_sur_le_tas):
         
