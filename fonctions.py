@@ -1,22 +1,24 @@
 import cartes
 import random
 
-def genere_cartes(couleurs, symboles):
+def genere_cartes(couleurs, symboles, nb_joueurs):
     jeu = []
-    for couleur in couleurs:
-        for symbole in symboles:
+    nb_jeu = nb_joueurs * 7 + nb_joueurs + 1 # 1 pour le tas et une carte de pioche chaque joueur
+    for joueur in range(nb_joueurs % 40): # 40 ou nombre de cartes dans un jeu
+        for couleur in couleurs:
+            for symbole in symboles:
             # ici pour symbole dans feneration if symbol == id du symbol mettre 2 cartes de ça
-            carte = cartes.Carte(couleur, symbole)
-            jeu.append(carte)
+                carte = cartes.Carte(couleur, symbole)
+                jeu.append(carte)
     return jeu
 
 
 def melange(pioche):
     indices_deja_passe = []
     nouvelle_pioche = []
-    while len(nouvelle_pioche) < 40:
+    while len(nouvelle_pioche) < len(pioche):
 
-        indice_aleatoire = random.randint(0, 39)
+        indice_aleatoire = random.randint(0, len(pioche)-1)
 
         if indice_aleatoire in indices_deja_passe:
             continue
@@ -25,12 +27,11 @@ def melange(pioche):
         indices_deja_passe.append(indice_aleatoire)
     return nouvelle_pioche
 
-def distribue(cartes):
+def distribue(cartes, nb_joueur):
      # liste de liste instance pour pioche, tas , joueurs
     """ Retourne une liste d'instances de jeu contenant les cartes dans l'ordre suivant, joueurs, pioche, tas."""
     pioche = cartes
     tas = [pioche.pop(0)]
-    nb_joueur = int(input("Donnez le nombre de joueur :"))
     # s'assurer que on tape pas 1
     instances = []
     for i in range(nb_joueur):
@@ -43,44 +44,59 @@ def distribue(cartes):
     
     return instances
 
-def preparation():
+def preparation(nb_joueurs):
     couleurs = ["bleu", "rouge", "jaune", "vert"]
     symboles = range(10)
-    instances = distribue(melange(genere_cartes(couleurs, symboles)))
+
+    instances = distribue(melange(genere_cartes(couleurs, symboles, nb_joueurs)), nb_joueurs)
     return instances
 
 def joue(joueur, pioche, tas): # un joueur = liste de cartes = cartes ici
     cartes_jouables = [] # indices des cartes
+    print("---------------")
     print("carte de joueur : ")
     for carte in joueur:
         carte.montrer()
-    print("---------------")
+    print("-----")
     for carte_id, carte in enumerate(joueur):
         # print(tas[-1].montrer())
         if carte.peut_poser(tas[-1]):
             cartes_jouables.append(carte_id)
     # print(cartes_jouables)
+    print("Le tas est : ")
+    tas[-1].montrer()
     if cartes_jouables == []:
         joueur.append(pioche.pop(0))
     else:
         carte_id = cartes_jouables[random.randint(0, len(cartes_jouables)-1)]
-        #print("Le joueur joue la carte : ")  
-        #joueur[carte_id].montrer()
+        print("Le joueur joue la carte : ")  
+        joueur[carte_id].montrer()
         tas.append(joueur.pop(carte_id))
-
+    print("-----")
     return joueur, pioche, tas
 
+
+def pioche_vide(pioche, tas):
+    if pioche == []:
+        nouvelle_pioche = melange(tas[:-1])
+        nouveau_tas = tas[0]
+        return nouvelle_pioche, [nouveau_tas]
+    else:
+        return False
+
+
 def jeu():
-    instances = preparation()
+    nb_joueurs = int(input("Donnez le nombre de joueur :"))
+    instances = preparation(nb_joueurs)
     joueurs = instances[:-2]
     pioche = instances[-2]
     tas = instances[-1]
     fin_du_jeu = False
     while not fin_du_jeu:
         for num, joueur in enumerate(joueurs):
-            for carte_du_tas in tas[-2:]:
-             carte_du_tas.montrer()
-            print("joueur numéro : ", num)
+            if pioche_vide(pioche, tas):
+                pioche, tas = pioche_vide(pioche, tas)
+            print("joueur numéro : ", num + 1)
             if joueur == []:
                 print(num, "gagné")
                 fin_du_jeu = True
