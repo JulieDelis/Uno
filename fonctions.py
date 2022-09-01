@@ -30,7 +30,8 @@ def distribue(cartes):
     """ Retourne une liste d'instances de jeu contenant les cartes dans l'ordre suivant, joueurs, pioche, tas."""
     pioche = cartes
     tas = [pioche.pop(0)]
-    nb_joueur = 2 #input("Donnez le nombre de joueur :")
+    nb_joueur = int(input("Donnez le nombre de joueur :"))
+    # s'assurer que on tape pas 1
     instances = []
     for i in range(nb_joueur):
         joueur = []
