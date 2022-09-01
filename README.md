@@ -8,6 +8,5 @@ Le jeu de Uno jouée par des bots aléatoires.
 ### ajouter des joueurs de mainère interactive (input())
 ### AI qui joue au Uno 
 ### interface graphique 
-### netoyer parce que beaucoup de cellules de code servent à rien
 ### resoudre le probleme des variable qui se copie pas comme on veut
 ### ameliorer la visibilité du jeu 
