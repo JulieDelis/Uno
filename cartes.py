@@ -4,7 +4,9 @@ class Carte:
         self.symbole = symbole  
     
     def montrer(self):
-        print((self.couleur, self.symbole))
+        transformation = {"bleu" : "\033[94m", "rouge" : "\033[91m", "jaune" : "\033[93m", "vert" :"\033[92m" } 
+        c = str(transformation.get(str(self.couleur))) + str(self.couleur)
+        print(c, self.symbole)
     # ! cette fonction ne retourne rien, si utliser avec print, valeur affichée = None
     
     def peut_poser(self, carte_sur_le_tas):
