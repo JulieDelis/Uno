@@ -9,5 +9,4 @@ Le jeu de Uno jouée par des bots aléatoires.
 ### AI qui joue au Uno 
 ### interface graphique 
 ### resoudre le probleme des variable qui se copie pas comme on veut
-### ameliorer la visibilité du jeu 
 ### Gérer l’imprévisibilité des entrée des joueurs en gestion des exception 
