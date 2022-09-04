@@ -5,7 +5,7 @@ class Carte:
     
     def montrer(self):
         transformation = {"bleu" : "\033[94m", "rouge" : "\033[91m", "jaune" : "\033[93m", "vert" :"\033[92m" } 
-        c = str(transformation.get(str(self.couleur))) + str(self.couleur)
+        c = str(transformation.get(str(self.couleur)))
         print(c, self.symbole)
     # ! cette fonction ne retourne rien, si utliser avec print, valeur affichée = None
     
