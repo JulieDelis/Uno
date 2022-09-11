@@ -1,7 +1,7 @@
 # Uno
 Le jeu de Uno jouée par des bots aléatoires.
 
-# Idée d'mélioration:
+# Idée d'amélioration:
 ### Documenter
 ### ajouter d'autre cartes (cartes speciales)
 ### faire un jeu intercatif (nous qui jouos et pas (que) bots)
