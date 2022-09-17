@@ -53,27 +53,26 @@ def preparation(nb_joueurs):
 
 def joue(joueur, pioche, tas): # un joueur = liste de cartes = cartes ici
     cartes_jouables = [] # indices des cartes
-    coulleur_de_baze = '\033[0m' # Défini la couleur en blanc sinon la couleur des textes continue d’être de la couleur de la dernière carte  
-    print(coulleur_de_baze, "---------------")
+    print("---------------")
     print("carte de joueur : ")
     for carte in joueur:
         carte.montrer()
-    print(coulleur_de_baze,"-----")
+    print("-----")
     for carte_id, carte in enumerate(joueur):
         # print(tas[-1].montrer())
         if carte.peut_poser(tas[-1]):
             cartes_jouables.append(carte_id)
     # print(cartes_jouables)
-    print(coulleur_de_baze, "Le tas est : ")
+    print("Le tas est : ")
     tas[-1].montrer()
     if cartes_jouables == []:
         joueur.append(pioche.pop(0))
     else:
         carte_id = cartes_jouables[random.randint(0, len(cartes_jouables)-1)]
-        print(coulleur_de_baze, "Le joueur joue la carte : ")  
+        print("Le joueur joue la carte : ")  
         joueur[carte_id].montrer()
         tas.append(joueur.pop(carte_id))
-    print(coulleur_de_baze, "-----")
+    print("-----")
     return joueur, pioche, tas
 
 
