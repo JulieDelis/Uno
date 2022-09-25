@@ -7,6 +7,9 @@ class Carte:
         coulleur_de_baze = '\033[0m' # Défini la couleur en blanc sinon la couleur des textes continue d’être de la couleur de la dernière carte  
         transformation = {"bleu" : "\033[94m", "rouge" : "\033[91m", "jaune" : "\033[93m", "vert" :"\033[92m" } 
         c = str(transformation.get(str(self.couleur)))
+        return c
+
+    def montrer2(c) :
         print(c, self.symbole, coulleur_de_baze)
     # ! cette fonction ne retourne rien, si utliser avec print, valeur affichée = None
     
