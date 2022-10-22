@@ -58,16 +58,11 @@ def preparation(nb_joueurs):
 
 def joue(joueur, pioche, tas): # un joueur = liste de cartes = cartes ici
     cartes_jouables = [] # indices des cartes
-    #printN("---------------")
-    #print("carte de joueur : ")
     for carte in joueur:
         carte.montrer()
-    #printN("-----")
     for carte_id, carte in enumerate(joueur):
-        # print(tas[-1].montrer())
         if carte.peut_poser(tas[-1]):
             cartes_jouables.append(carte_id)
-    # print(cartes_jouables)
     printN("Le tas est : ")
     tas[-1].montrer()
     if cartes_jouables == []:
@@ -77,7 +72,6 @@ def joue(joueur, pioche, tas): # un joueur = liste de cartes = cartes ici
         printN("Le joueur joue la carte : ")  
         joueur[carte_id].montrer()
         tas.append(joueur.pop(carte_id))
-    #printN("-----")
     return joueur, pioche, tas
 
 
