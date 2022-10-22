@@ -1,6 +1,11 @@
 import cartes
 import random
 
+
+def printN(text) :
+    Retoure_a_la_ligne = "\n"
+    print(Retoure_a_la_ligne, text)
+
 def genere_cartes(couleurs, symboles, nb_joueurs):
     jeu = []
     nb_jeu = nb_joueurs * 7 + nb_joueurs + 1 # 1 pour le tas et une carte de pioche chaque joueur
@@ -53,26 +58,26 @@ def preparation(nb_joueurs):
 
 def joue(joueur, pioche, tas): # un joueur = liste de cartes = cartes ici
     cartes_jouables = [] # indices des cartes
-    print("---------------")
-    print("carte de joueur : ")
+    #printN("---------------")
+    #print("carte de joueur : ")
     for carte in joueur:
         carte.montrer()
-    print("-----")
+    #printN("-----")
     for carte_id, carte in enumerate(joueur):
         # print(tas[-1].montrer())
         if carte.peut_poser(tas[-1]):
             cartes_jouables.append(carte_id)
     # print(cartes_jouables)
-    print("Le tas est : ")
+    printN("Le tas est : ")
     tas[-1].montrer()
     if cartes_jouables == []:
         joueur.append(pioche.pop(0))
     else:
         carte_id = cartes_jouables[random.randint(0, len(cartes_jouables)-1)]
-        print("Le joueur joue la carte : ")  
+        printN("Le joueur joue la carte : ")  
         joueur[carte_id].montrer()
         tas.append(joueur.pop(carte_id))
-    print("-----")
+    #printN("-----")
     return joueur, pioche, tas
 
 
@@ -96,7 +101,7 @@ def jeu():
         for num, joueur in enumerate(joueurs):
             if pioche_vide(pioche, tas):
                 pioche, tas = pioche_vide(pioche, tas)
-            print("joueur numéro : ", num + 1)
+            print("\n","carte du joueur numéro : ", num + 1)
             if joueur == []:
                 print(num, "gagné")
                 fin_du_jeu = True
